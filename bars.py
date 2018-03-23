@@ -5,11 +5,7 @@ import sys
 
 def load_data(filepath):
     with open(filepath, 'r') as file:
-        try:
-            bars_data = json.loads(file.read())
-        except:
-            print('Файл НЕ json')
-            sys.exit()
+        bars_data = json.loads(file.read())
     return bars_data
 
 
