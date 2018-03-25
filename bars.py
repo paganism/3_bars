@@ -50,18 +50,9 @@ if __name__ == '__main__':
     if not bars_data:
         sys.exit('Файл не в формате json')
     bars_features = get_bars_features(bars_data)
-    print('Самый большой бар: ', get_biggest_bar_name(bars_features)
-        ['properties']
-        ['Attributes']
-        ['Name'])
-    print('Самый маленький бар: ', get_smallest_bar_name(bars_features)
-        ['properties']
-        ['Attributes']
-        ['Name'])
+    print('Самый большой бар: ', get_biggest_bar_name(bars_features))
+    print('Самый маленький бар: ', get_smallest_bar_name(bars_features))
     lat, lon = get_user_coordinates()
     if not all([lat, lon]):
         sys.exit('Неверный формат данных. Данные должны быть в формате (55.5)')
-    print('Самый близкий бар: ', get_closest_bar_name(bars_data, lat, lon)
-        ['properties']
-        ['Attributes']
-        ['Name'])
+    print('Самый близкий бар: ', get_closest_bar_name(bars_data, lat, lon))
