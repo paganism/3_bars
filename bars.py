@@ -12,6 +12,7 @@ def load_data(myjson):
     except ValueError:
         return False
 
+
 def get_bars_features(bars_data):
     return bars_data['features']
 
@@ -39,13 +40,26 @@ def get_user_coordinates():
     return latitude, longitude
 
 
-if __name__ == '__main__':
+def check_filepath(filepath):
     try:
         filepath = sys.argv[1]
+        if not os.path.exists(filepath):
+            return None
+        if not filepath:
+            return None
+        return filepath
     except IndexError:
-        raise SystemExit('Не задан аргумент')
-    if not os.path.exists(filepath):
-        sys.exit('Файл .json по указанному пути не существует')
+        return None
+
+
+
+if __name__ == '__main__':
+    try:
+        filepath = check_filepath(sys.argv[1])
+    except:
+        sys.exit('Не задан аргумент')
+    if not filepath:
+        sys.exit('файл не суествует')
     bars_data = load_data(filepath)
     if not bars_data:
         sys.exit('Файл не в формате json')
