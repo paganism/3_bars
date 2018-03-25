@@ -42,7 +42,7 @@ def get_user_coordinates():
         longitude = float(input('Введите долготу в формате (55.5):\n'))
     except ValueError:
         print('Неверный формат данных. Данные должны быть в формате (55.5)')
-        sys.exit()
+        return None, None
     return latitude, longitude
 
 
@@ -58,4 +58,6 @@ if __name__ == '__main__':
     print('Самый большой бар: ', get_biggest_bar_name(bars_data))
     print('Самый маленький бар: ', get_smallest_bar_name(bars_data))
     lat, lon = get_user_coordinates()
+    if lat is None or lon is None:
+        sys.exit()
     print("Самый близкий бар: ", get_closest_bar_name(bars_data, lat, lon))
