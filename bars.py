@@ -40,7 +40,7 @@ def get_user_coordinates():
     return latitude, longitude
 
 
-def check_filepath(filepath):
+def check_filepath():
     try:
         filepath = sys.argv[1]
         if not os.path.exists(filepath):
@@ -54,10 +54,7 @@ def check_filepath(filepath):
 
 
 if __name__ == '__main__':
-    try:
-        filepath = check_filepath(sys.argv[1])
-    except:
-        sys.exit('Не задан аргумент')
+    filepath = check_filepath()
     if not filepath:
         sys.exit('файл не суествует')
     bars_data = load_data(filepath)
