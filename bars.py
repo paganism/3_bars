@@ -43,7 +43,7 @@ def get_user_coordinates():
 def check_filepath(filepath):
     try:
         if not os.path.exists(filepath):
-            return None
+            raise SystemExit('Файл не суествует')
         return filepath
     except IndexError:
         return None
@@ -54,17 +54,20 @@ if __name__ == '__main__':
     try:
         filepath = check_filepath(sys.argv[1])
     except IndexError:
-        sys.exit("Не задан аргумент")
-    if not filepath:
-        sys.exit('файл не существует')
-    else:
-        bars_data = load_data(filepath)
-        if not bars_data:
-            sys.exit('Файл не в формате json')
-        bars_features = get_bars_features(bars_data)
-        print('Самый большой бар: ', get_biggest_bar(bars_features))
-        print('Самый маленький бар: ', get_smallest_bar(bars_features))
-        lat, lon = get_user_coordinates()
-        if not all([lat, lon]):
-            sys.exit('Неверный формат данных. Данные должны быть в формате (55.5)')
-        print('Самый близкий бар: ', get_closest_bar(bars_data, lat, lon))
+        sys.exit('Не задан аргумент')
+    bars_data = load_data(filepath)
+    if not bars_data:
+        sys.exit('Файл не в формате json')
+    bars_features = get_bars_features(bars_data)
+    print('Самый большой бар: ', get_biggest_bar(bars_features)['properties']
+        ['Attributes']
+        ['Name'])
+    print('Самый маленький бар: ', get_smallest_bar(bars_features)['properties']
+        ['Attributes']
+        ['Name'])
+    lat, lon = get_user_coordinates()
+    if not all([lat, lon]):
+        sys.exit('Неверный формат данных. Данные должны быть в формате (55.5)')
+    print('Самый близкий бар: ', get_closest_bar(bars_data, lat, lon)['properties']
+        ['Attributes']
+        ['Name'])
