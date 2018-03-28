@@ -7,8 +7,8 @@ import os
 def load_data(myjson):
     try:
         with open(filepath, 'r') as file:
-            json_object = json.loads(file.read())
-        return json_object
+            decoded_json = json.loads(file.read())
+        return decoded_json
     except ValueError:
         return False
 
@@ -43,7 +43,7 @@ def get_user_coordinates():
 def check_filepath(filepath):
     try:
         if not os.path.exists(filepath):
-            raise SystemExit('Файл не суествует')
+            return None
         return filepath
     except IndexError:
         return None
@@ -55,19 +55,24 @@ if __name__ == '__main__':
         filepath = check_filepath(sys.argv[1])
     except IndexError:
         sys.exit('Не задан аргумент')
+    if not filepath:
+        sys.exit('Файл не суествует')
     bars_data = load_data(filepath)
     if not bars_data:
         sys.exit('Файл не в формате json')
     bars_features = get_bars_features(bars_data)
-    print('Самый большой бар: ', get_biggest_bar(bars_features)['properties']
+    print('Самый большой бар: ', get_biggest_bar(bars_features)
+        ['properties']
         ['Attributes']
         ['Name'])
-    print('Самый маленький бар: ', get_smallest_bar(bars_features)['properties']
+    print('Самый маленький бар: ', get_smallest_bar(bars_features)
+        ['properties']
         ['Attributes']
         ['Name'])
     lat, lon = get_user_coordinates()
     if not all([lat, lon]):
         sys.exit('Неверный формат данных. Данные должны быть в формате (55.5)')
-    print('Самый близкий бар: ', get_closest_bar(bars_data, lat, lon)['properties']
+    print('Самый близкий бар: ', get_closest_bar(bars_data, lat, lon)
+        ['properties']
         ['Attributes']
         ['Name'])
