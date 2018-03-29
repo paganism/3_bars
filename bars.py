@@ -49,7 +49,7 @@ def check_filepath(filepath):
         return None
 
 def get_bar_name(bar):
-    return(bar['properties']['Attributes']['Name'])
+    return bar['properties']['Attributes']['Name']
 
 
 if __name__ == '__main__':
