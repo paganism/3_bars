@@ -48,6 +48,8 @@ def check_filepath(filepath):
     except IndexError:
         return None
 
+def get_bar_name(bar):
+    return(bar['properties']['Attributes']['Name'])
 
 
 if __name__ == '__main__':
@@ -61,18 +63,12 @@ if __name__ == '__main__':
     if not bars_data:
         sys.exit('Файл не в формате json')
     bars_features = get_bars_features(bars_data)
-    print('Самый большой бар: ', get_biggest_bar(bars_features)
-        ['properties']
-        ['Attributes']
-        ['Name'])
-    print('Самый маленький бар: ', get_smallest_bar(bars_features)
-        ['properties']
-        ['Attributes']
-        ['Name'])
+    biggest_bar = get_biggest_bar(bars_features)
+    print('Самый большой бар: ', get_bar_name(biggest_bar))
+    smallest_bar = get_smallest_bar(bars_features)
+    print('Самый маленький бар: ', get_bar_name(smallest_bar))
     lat, lon = get_user_coordinates()
     if not all([lat, lon]):
         sys.exit('Неверный формат данных. Данные должны быть в формате (55.5)')
-    print('Самый близкий бар: ', get_closest_bar(bars_data, lat, lon)
-        ['properties']
-        ['Attributes']
-        ['Name'])
+    closest_bar = get_closest_bar(bars_data, lat, lon)
+    print('Самый близкий бар: ', get_bar_name(closest_bar))
