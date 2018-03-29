@@ -42,7 +42,7 @@ def get_user_coordinates():
 
 def check_filepath(filepath):
     try:
-        if not os.path.exists(filepath):
+        if not (os.path.exists(filepath)):
             return None
         return filepath
     except IndexError:
@@ -53,10 +53,7 @@ def get_bar_name(bar):
 
 
 if __name__ == '__main__':
-    try:
-        filepath = check_filepath(sys.argv[1])
-    except IndexError:
-        sys.exit('Не задан аргумент')
+    filepath = check_filepath(sys.argv[1])
     if not filepath:
         sys.exit('Файл не суествует')
     bars_data = load_data(filepath)
