@@ -4,7 +4,7 @@ import sys
 import os
 
 
-def load_data(myjson):
+def load_data(json_data):
     try:
         with open(filepath, 'r') as file:
             decoded_json = json.loads(file.read())
