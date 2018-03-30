@@ -18,11 +18,13 @@ def get_bars_features(bars_data):
 
 
 def get_biggest_bar(bars_features):
-    return max(bars_features, key=lambda x: x['properties']['Attributes']['SeatsCount'])
+    return max(bars_features, key=lambda x: x
+    ['properties']['Attributes']['SeatsCount'])
 
 
 def get_smallest_bar(bars_data):
-    return min(bars_features, key=lambda x: x['properties']['Attributes']['SeatsCount'])
+    return min(bars_features, key=lambda x: x
+    ['properties']['Attributes']['SeatsCount'])
 
 
 def get_closest_bar(bars_data, longitude, latitude):
