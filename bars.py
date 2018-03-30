@@ -4,7 +4,7 @@ import sys
 import os
 
 
-def load_data(json_data):
+def load_data(filepath):
     try:
         with open(filepath, 'r') as file:
             decoded_json = json.loads(file.read())
@@ -13,18 +13,22 @@ def load_data(json_data):
         return False
 
 
-def get_bars_features(bars_data):
+def get_bars_features(decoded_json):
     return bars_data['features']
 
 
 def get_biggest_bar(bars_features):
     return max(bars_features, key=lambda x: x
-    ['properties']['Attributes']['SeatsCount'])
+    ['properties']
+    ['Attributes']
+    ['SeatsCount'])
 
 
-def get_smallest_bar(bars_data):
+def get_smallest_bar(bars_features):
     return min(bars_features, key=lambda x: x
-    ['properties']['Attributes']['SeatsCount'])
+    ['properties']
+    ['Attributes']
+    ['SeatsCount'])
 
 
 def get_closest_bar(bars_data, longitude, latitude):
@@ -44,6 +48,7 @@ def get_user_coordinates():
 
 def get_bar_name(bar):
     return bar['properties']['Attributes']['Name']
+
 
 
 if __name__ == '__main__':
