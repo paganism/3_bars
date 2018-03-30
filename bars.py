@@ -40,22 +40,17 @@ def get_user_coordinates():
     return latitude, longitude
 
 
-def check_filepath(filepath):
-    try:
-        if not (os.path.exists(filepath)):
-            return None
-        return filepath
-    except IndexError:
-        return None
-
 def get_bar_name(bar):
     return bar['properties']['Attributes']['Name']
 
 
 if __name__ == '__main__':
-    filepath = check_filepath(sys.argv[1])
-    if not filepath:
-        sys.exit('Файл не суествует')
+    if len(sys.argv) > 1:
+        filepath = sys.argv[1]
+    else:
+        sys.exit('Не задан аргумент')
+    if not (os.path.exists(filepath)):
+        sys.exit('Файл не существует')
     bars_data = load_data(filepath)
     if not bars_data:
         sys.exit('Файл не в формате json')
