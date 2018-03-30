@@ -18,17 +18,17 @@ def get_bars_features(decoded_json):
 
 
 def get_biggest_bar(bars_features):
-    return max(bars_features, key=lambda x: x
-    ['properties']
-    ['Attributes']
-    ['SeatsCount'])
+    return max(bars_features, key=lambda x: x[
+        'properties'][
+        'Attributes'][
+        'SeatsCount'])
 
 
 def get_smallest_bar(bars_features):
-    return min(bars_features, key=lambda x: x
-    ['properties']
-    ['Attributes']
-    ['SeatsCount'])
+    return min(bars_features, key=lambda x: x[
+        'properties'][
+        'Attributes'][
+        'SeatsCount'])
 
 
 def get_closest_bar(bars_data, longitude, latitude):
@@ -48,7 +48,6 @@ def get_user_coordinates():
 
 def get_bar_name(bar):
     return bar['properties']['Attributes']['Name']
-
 
 
 if __name__ == '__main__':
