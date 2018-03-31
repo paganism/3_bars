@@ -20,19 +20,19 @@ def get_bars_features(decoded_json):
 def get_biggest_bar(bars_features):
     return max(bars_features, key=lambda x: x[
         'properties'][
-        'Attributes'][
-        'SeatsCount'])
+            'Attributes'][
+                'SeatsCount'])
 
 
 def get_smallest_bar(bars_features):
     return min(bars_features, key=lambda x: x[
         'properties'][
-        'Attributes'][
-        'SeatsCount'])
+            'Attributes'][
+                'SeatsCount'])
 
 
-def get_closest_bar(bars_data, longitude, latitude):
-    return min(bars_data['features'], key=lambda x: sqrt(
+def get_closest_bar(bars_features, longitude, latitude):
+    return min(bars_features, key=lambda x: sqrt(
         (x['geometry']['coordinates'][0] - longitude) ** 2 +
         (x['geometry']['coordinates'][1] - latitude) ** 2))
 
@@ -68,5 +68,6 @@ if __name__ == '__main__':
     lat, lon = get_user_coordinates()
     if not all([lat, lon]):
         sys.exit('Неверный формат данных. Данные должны быть в формате (55.5)')
-    closest_bar = get_closest_bar(bars_data, lat, lon)
+    closest_bar = get_closest_bar(bars_features, lat, lon)
+
     print('Самый близкий бар: ', get_bar_name(closest_bar))
