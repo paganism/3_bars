@@ -18,17 +18,17 @@ def get_bars_features(decoded_json):
 
 
 def get_biggest_bar(bars_features):
-    return max(bars_features, key=lambda x: x[
-        'properties'][
-            'Attributes'][
-                'SeatsCount'])
+    return max(
+        bars_features,
+        key=lambda x: x['properties']['Attributes']['SeatsCount']
+    )
 
 
 def get_smallest_bar(bars_features):
-    return min(bars_features, key=lambda x: x[
-        'properties'][
-            'Attributes'][
-                'SeatsCount'])
+    return min(
+        bars_features,
+        key=lambda x: x['properties']['Attributes']['SeatsCount']
+    )
 
 
 def get_closest_bar(bars_features, longitude, latitude):
@@ -51,12 +51,10 @@ def get_bar_name(bar):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
+    if len(sys.argv) > 1 and os.path.exists(sys.argv[1]):
         filepath = sys.argv[1]
     else:
-        sys.exit('Не задан аргумент')
-    if not (os.path.exists(filepath)):
-        sys.exit('Файл не существует')
+        sys.exit('Не задан аргумент или файл не существует')
     bars_data = load_data(filepath)
     if not bars_data:
         sys.exit('Файл не в формате json')
